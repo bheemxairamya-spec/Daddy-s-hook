@@ -1,0 +1,565 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-dh-bg: var(--dh-bg);
+  --color-dh-surface: var(--dh-surface);
+  --color-dh-tint: var(--dh-tint);
+  --color-dh-forest: var(--dh-forest);
+  --color-dh-mid: var(--dh-mid);
+  --color-dh-gold: var(--dh-gold);
+  --color-dh-light-gold: var(--dh-light-gold);
+  --color-dh-body: var(--dh-body);
+  --color-dh-muted: var(--dh-muted);
+  --color-dh-border: var(--dh-border);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sc: 'Cormorant SC', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+  --dh-bg: #F7F3EA;
+  --dh-surface: #FFFDF8;
+  --dh-tint: #EDEFE6;
+  --dh-tint-border: #D7DBCB;
+  --dh-forest: #0F3720;
+  --dh-mid: #1F4A32;
+  --dh-hover: #0A2A19;
+  --dh-gold: #B8934A;
+  --dh-light-gold: #D9C08A;
+  --dh-body: #2E3F34;
+  --dh-muted: #5E6B62;
+  --dh-border: #E3DCCB;
+}
+
+.dark {
+  --dh-bg: #081E12;
+  --dh-surface: #0F3720;
+  --dh-tint: #1F4A32;
+  --dh-tint-border: #2E5A40;
+  --dh-forest: #F7F3EA;
+  --dh-mid: #1F4A32;
+  --dh-hover: #0A2A19;
+  --dh-gold: #B8934A;
+  --dh-light-gold: #D9C08A;
+  --dh-body: #F7F3EA;
+  --dh-muted: #C2CCC2;
+  --dh-border: rgba(184, 147, 74, 0.45);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--dh-bg);
+    color: var(--dh-body);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    background-color: var(--dh-bg);
+    color: var(--dh-body);
+    font-size: 18px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid #B8934A;
+    outline-offset: 2px;
+  }
+}
+
+.font-small-caps {
+  font-family: 'Cormorant SC', 'Cormorant Garamond', Georgia, serif;
+  font-variant: small-caps;
+  line-height: 0.96;
+}
+
+.font-ui {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* Atelier buttons */
+.atelier-btn-primary {
+  border-radius: 8px;
+  min-height: 52px;
+  background-color: #0F3720;
+  color: #F7F3EA;
+  box-shadow: 0 8px 20px rgba(15, 55, 32, 0.16);
+  transition: background-color 450ms ease-out, translate 450ms ease-out, box-shadow 450ms ease-out;
+}
+
+.atelier-btn-primary:hover:not(:disabled) {
+  background-color: #0A2A19;
+  translate: 0 -2px;
+  box-shadow: 0 12px 24px rgba(15, 55, 32, 0.22);
+}
+
+.atelier-btn-secondary {
+  border-radius: 8px;
+  min-height: 52px;
+  background-color: #FFFDF8;
+  border: 1px solid #C4CABD;
+  color: #0F3720;
+  transition: background-color 450ms ease-out, translate 450ms ease-out, border-color 450ms ease-out;
+}
+
+.atelier-btn-secondary:hover:not(:disabled) {
+  background-color: #EDEFE6;
+  translate: 0 -2px;
+}
+
+.dark .atelier-btn-secondary {
+  background-color: #0F3720;
+  border-color: rgba(184, 147, 74, 0.65);
+  color: #F7F3EA;
+}
+
+.dark .atelier-btn-secondary:hover:not(:disabled) {
+  background-color: #1F4A32;
+}
+
+/* Sage-tint pill eyebrow */
+.atelier-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 9999px;
+  background-color: #EDEFE6;
+  border: 1px solid #D7DBCB;
+  padding: 0.4rem 1rem;
+  color: #0F3720;
+}
+
+.dark .atelier-pill {
+  background-color: #1F4A32;
+  border-color: rgba(184, 147, 74, 0.5);
+  color: #F7F3EA;
+}
+
+/* Cards */
+.atelier-card {
+  border-radius: 12px;
+  background-color: #FFFDF8;
+  border: 1px solid #E3DCCB;
+  transition: translate 450ms ease-out, box-shadow 450ms ease-out;
+}
+
+.atelier-card:hover {
+  box-shadow: 0 14px 30px rgba(15, 55, 32, 0.08);
+}
+
+.dark .atelier-card {
+  background-color: #0F3720;
+  border-color: rgba(184, 147, 74, 0.45);
+}
+
+/* Independent `translate` hover-lift for category, product, and why-us cards */
+.atelier-hover-lift {
+  transition: translate 450ms cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 450ms ease-out;
+}
+
+.atelier-hover-lift:hover {
+  translate: 0 -6px;
+  box-shadow: 0 18px 36px rgba(15, 55, 32, 0.14);
+}
+
+/* Scroll reveal (26px + opacity) that never conflicts with independent `translate` hover lift */
+.dh-scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 650ms cubic-bezier(0.2, 0.7, 0.2, 1), transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.dh-scroll-reveal[data-visible='true'] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Awning strips */
+.atelier-awning-strip {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #0F3720 0px,
+    #0F3720 35px,
+    transparent 35px,
+    transparent 70px
+  );
+}
+
+.dark .atelier-awning-strip {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #1F4A32 0px,
+    #1F4A32 35px,
+    transparent 35px,
+    transparent 70px
+  );
+}
+
+.atelier-awning-divider {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #1F4A32 0px,
+    #1F4A32 35px,
+    transparent 35px,
+    transparent 70px
+  );
+}
+
+/* Subtle fabric grain overlay for forest green panels */
+.fabric-grain {
+  background-image: radial-gradient(rgba(217, 192, 138, 0.08) 1px, transparent 0);
+  background-size: 14px 14px;
+}
+
+/* Dark-forest/charcoal embroidered logo treatment on Warm Ivory */
+.logo-charcoal-multiply {
+  filter: invert(1) grayscale(1) contrast(1.15);
+  mix-blend-mode: multiply;
+}
+
+.dark .logo-charcoal-multiply {
+  filter: none;
+  mix-blend-mode: lighten;
+}
+
+/* =====================================================================
+   60FPS COMPOSITOR KEYFRAMES (transform, opacity, clip-path, dashoffset)
+   ===================================================================== */
+
+@keyframes dh-page-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-dh-page-enter {
+  animation: dh-page-enter 280ms ease-out both;
+}
+
+@keyframes dh-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-dh-marquee {
+  display: flex;
+  width: max-content;
+  animation: dh-marquee 30s linear infinite;
+}
+
+.animate-dh-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hero Masked Line Rise */
+@keyframes dh-line-rise {
+  0% {
+    transform: translate3d(0, 108%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-dh-line-rise {
+  animation: dh-line-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Hero Sequential Fade Up */
+@keyframes dh-fade-up {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-dh-fade-up {
+  animation: dh-fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Hero Stitched Gold Line Left-to-Right Clip Reveal */
+@keyframes dh-stitch-draw {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.4;
+  }
+  100% {
+    clip-path: inset(0 0% 0 0);
+    opacity: 1;
+  }
+}
+
+.animate-dh-stitch-draw {
+  animation: dh-stitch-draw 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) 1.2s both;
+}
+
+/* Flagship Card Inner Border Thread Draw (pathLength=1) */
+@keyframes dh-border-draw {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-dh-border-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: dh-border-draw 2.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Flagship Shirt Loop Float (6px, 5s) */
+@keyframes dh-shirt-float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0);
+  }
+}
+
+.animate-dh-shirt-float {
+  animation: dh-shirt-float 5s ease-in-out infinite;
+}
+
+/* Gold Fish Hook Pendulum Swing (+/- 2deg, 2.2s alternate) */
+@keyframes dh-hook-swing {
+  0% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(2deg);
+  }
+}
+
+.animate-dh-hook-swing {
+  transform-origin: top center;
+  animation: dh-hook-swing 2.2s ease-in-out infinite alternate;
+}
+
+/* Hero Ambient Dust Drifting Upward */
+@keyframes dh-ambient-dust {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.75);
+  }
+  20% {
+    opacity: 0.72;
+  }
+  80% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--dust-dx, 18px), -95px, 0) scale(1.1);
+  }
+}
+
+.animate-dh-ambient-dust {
+  animation: dh-ambient-dust var(--dust-dur, 8s) ease-in-out var(--dust-delay, 0s) infinite;
+}
+
+/* Magic-Dust Outward Burst from T-Shirt Center */
+@keyframes dh-magic-burst {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(0.45);
+  }
+  65% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--burst-tx, 0px), var(--burst-ty, -120px), 0) scale(1.15);
+  }
+}
+
+.animate-dh-magic-burst {
+  animation: dh-magic-burst 1.8s cubic-bezier(0.16, 0.85, 0.3, 1) var(--burst-delay, 0.1s) both;
+}
+
+/* Soft Radial Gold Halo behind T-Shirt on Hook Burst */
+@keyframes dh-magic-glow {
+  0% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+  28% {
+    opacity: 0.72;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.28);
+  }
+}
+
+.animate-dh-magic-glow {
+  animation: dh-magic-glow 1.8s ease-out both;
+}
+
+/* Bag Badge Bounce (1 -> 1.6 -> 1, 0.45s) */
+@keyframes dh-bag-bounce {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-dh-bag-bounce {
+  animation: dh-bag-bounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Final Streak PRIZE Circle Soft Gold Pulse Ring (2.4s loop) */
+@keyframes dh-prize-ring {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.12);
+  }
+}
+
+.animate-dh-prize-ring {
+  animation: dh-prize-ring 2.4s ease-in-out infinite;
+}
+
+/* ---- Storefront polish: toasts, skeletons, hearts, press, scroll progress ---- */
+@keyframes dh-toast-in {
+  0% { opacity: 0; transform: translate3d(24px, 0, 0) scale(0.96); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+.animate-dh-toast-in { animation: dh-toast-in 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@keyframes dh-heart-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.45); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+.animate-dh-heart-pop { animation: dh-heart-pop 520ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+@keyframes dh-shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.dh-skeleton {
+  background-color: #EDEFE6;
+  background-image: linear-gradient(90deg, transparent 0, rgba(255, 253, 248, 0.75) 50%, transparent 100%);
+  background-size: 400px 100%;
+  background-repeat: no-repeat;
+  animation: dh-shimmer 1.4s ease-in-out infinite;
+  border: 1px solid #E3DCCB;
+  border-radius: 12px;
+}
+.dark .dh-skeleton {
+  background-color: #0F3720;
+  background-image: linear-gradient(90deg, transparent 0, rgba(184, 147, 74, 0.2) 50%, transparent 100%);
+  border-color: rgba(184, 147, 74, 0.35);
+}
+
+.atelier-btn-primary:active:not(:disabled),
+.atelier-btn-secondary:active:not(:disabled) {
+  scale: 0.97;
+  translate: 0 0;
+}
+
+.dh-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  background: #B8934A;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--dh-progress, 0));
+  pointer-events: none;
+}
+
+/* Image zoom-in reveal for product photos once loaded */
+@keyframes dh-img-in {
+  0% { opacity: 0; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.animate-dh-img-in { animation: dh-img-in 700ms ease-out both; }
+
+/* =====================================================================
+   REDUCED MOTION COMPLIANCE
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-dh-marquee,
+  .animate-dh-page-enter,
+  .animate-dh-line-rise,
+  .animate-dh-fade-up,
+  .animate-dh-stitch-draw,
+  .animate-dh-border-draw,
+  .animate-dh-shirt-float,
+  .animate-dh-hook-swing,
+  .animate-dh-ambient-dust,
+  .animate-dh-magic-burst,
+  .animate-dh-magic-glow,
+  .animate-dh-bag-bounce,
+  .animate-dh-prize-ring,
+  .animate-dh-toast-in,
+  .animate-dh-heart-pop,
+  .animate-dh-img-in,
+  .dh-skeleton {
+    animation: none !important;
+  }
+  .animate-dh-stitch-draw {
+    clip-path: inset(0 0% 0 0) !important;
+    opacity: 1 !important;
+  }
+  .animate-dh-border-draw {
+    stroke-dashoffset: 0 !important;
+  }
+  .dh-scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .atelier-btn-primary,
+  .atelier-btn-secondary,
+  .atelier-card,
+  .atelier-hover-lift {
+    transition: none !important;
+  }
+}
